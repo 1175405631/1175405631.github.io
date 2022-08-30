@@ -1,0 +1,12 @@
+ let deltatime = timestamp - lastTime;
+    lastTime = timestamp;
+    timeToNextRaven += deltatime;
+    if(timeToNextRaven > ravenInterval){
+        ravens.push(new Raven());
+        timeToNextRaven = 0;
+        
+    };
+    [...ravens].forEach(object => object.update());
+    [...ravens].forEach(object => object.draw());
+    ravens = ravens.filter(object => !object.markedForDeletion);
+    
